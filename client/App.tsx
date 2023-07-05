@@ -1,15 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React from 'react';
-import { Text, View } from 'react-native';
-import tw from 'tailwind-react-native-classnames';
+import { Provider } from 'react-redux';
 
+import { store } from './src/app/store'
+import Navigation from './src/navigation/Navigation';
 
 export default function App() {
   return (
-    <View className={`items-center justify-center flex-1 bg-red-500`}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar  />
-    </View>
+    <Provider store={store}>      
+      <Navigation />
+    </Provider>
   );
 }
 

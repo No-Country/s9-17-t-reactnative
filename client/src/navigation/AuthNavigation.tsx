@@ -1,14 +1,19 @@
-import React from 'react'
-import HomeScreen from '../screens/HomeScreen'
+import React from 'react';
+import HomeScreen from '../screens/HomeScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import DrawerContent from '../components/DrawerContent';
 
 const Drawer = createDrawerNavigator();
+
 const AuthNavigation = () => {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name='home' component={HomeScreen} />
+    <Drawer.Navigator
+      drawerContent={DrawerContent}
+    >
+      <Drawer.Screen name="home" component={HomeScreen} />
     </Drawer.Navigator>
   )
 }
 
 export default AuthNavigation
+

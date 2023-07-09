@@ -12,6 +12,7 @@ const LoginScreen = () => {
       <Text>LoginScreen</Text>
       <Button title='Login' onPress={() => dispatch(login())} />
       <Button title='Go to register' onPress={() => navigation.navigate("register")} />
+      <Button title='Profile' onPress={() => navigation.navigate("myprofile")} />
     </View>
   )
 }

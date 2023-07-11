@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator()
 
 const NoAuthNavigation = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='login' component={LoginScreen}/>
       <Stack.Screen name='register' component={RegisterScreen}/>
       <Stack.Screen name='myprofile' component={MyProfile}/>

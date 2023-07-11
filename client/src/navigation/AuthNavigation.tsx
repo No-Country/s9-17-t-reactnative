@@ -9,6 +9,7 @@ const AuthNavigation = () => {
   return (
     <Drawer.Navigator
       drawerContent={DrawerContent}
+      screenOptions={{ headerShown: false }}
     >
       <Drawer.Screen name="home" component={HomeScreen} />
     </Drawer.Navigator>

@@ -1,4 +1,4 @@
-import { View, Text, FlatList, ScrollView, Image } from "react-native";
+import { View, Text, FlatList, ScrollView, Image, TouchableOpacity, SafeAreaView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Search from "../components/Search";
@@ -9,6 +9,10 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+
+  const newViaje = (): void => {
+    navigation.navigate("newTrip")
+  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -49,7 +53,7 @@ const HomeScreen = () => {
   );
 
   return (
-    <View className="">
+    <SafeAreaView className="relative h-full pb-4 ">
       <View className="bg-[#FFA800] w-full">
         <FlatList
           className="ml-8  mb-4 w-full "
@@ -63,6 +67,14 @@ const HomeScreen = () => {
       <Text className="text-center my-4 font-bold text-2xl">
         Viajes Disponibles
       </Text>
+      <TouchableOpacity
+       onPress={newViaje}
+      className="absolute w-22 h-14 border-2 rounded-2xl bg-amber-300 bottom-12 right-6 justify-center items-center z-50">
+        <View className="flex flex-row justify-evenly items-center px-2">
+        <Entypo  name="plus" size={30} />
+        <Text className="font-bold text-sm" >Nuevo Viaje</Text>
+        </View>
+      </TouchableOpacity>
       <ScrollView className="mt-5 px-4 gap-2">
         {filteredData.map((item, index) => {
           return (
@@ -112,7 +124,8 @@ const HomeScreen = () => {
           );
         })}
       </ScrollView>
-    </View>
+     
+    </SafeAreaView>
   );
 };
 

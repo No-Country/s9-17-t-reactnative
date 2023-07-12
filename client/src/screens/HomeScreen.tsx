@@ -69,7 +69,7 @@ const HomeScreen = () => {
       </Text>
       <TouchableOpacity
        onPress={newViaje}
-      className="absolute w-22 h-14 border-2 rounded-2xl bg-amber-300 bottom-12 right-6 justify-center items-center z-50">
+      className="absolute w-22 h-14 border-2 rounded-2xl bg-yellow-500 bottom-12 right-6 justify-center items-center z-50">
         <View className="flex flex-row justify-evenly items-center px-2">
         <Entypo  name="plus" size={30} />
         <Text className="font-bold text-sm" >Nuevo Viaje</Text>

@@ -20,4 +20,4 @@ const NoAuthNavigation = () => {
   )
 }
 
-export default NoAuthNavigation
+export default NoAuthNavigation;

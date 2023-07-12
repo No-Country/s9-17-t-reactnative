@@ -3,6 +3,7 @@ import HomeScreen from '../screens/HomeScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import DrawerContent from '../components/DrawerContent';
 import NewTrip from '../screens/NewTrip';
+import NewTripDetail from '../screens/NewTripDetail';
 
 const Drawer = createDrawerNavigator();
 
@@ -18,8 +19,13 @@ const AuthNavigation = () => {
       <Drawer.Screen options={{title:"Crear Nuevo Viaje",  
       headerTitleAlign: "center",
       }} name="newTrip" component={NewTrip} />
+      <Drawer.Screen options={{title:"Crear Nuevo Viaje",  
+      headerTitleAlign: "center",
+      }} name="newtripdetail" component={NewTripDetail} />
     </Drawer.Navigator>
+    
   )
 }
+
 
 export default AuthNavigation

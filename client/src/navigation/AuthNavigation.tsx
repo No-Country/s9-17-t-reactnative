@@ -9,12 +9,13 @@ const AuthNavigation = () => {
   return (
     <Drawer.Navigator
       drawerContent={DrawerContent}
-      screenOptions={{ headerShown: false }}
+      screenOptions={{ headerShown: true, headerShadowVisible: false,  headerStyle:{
+        backgroundColor:"#FFA800"
+      } }}
     >
-      <Drawer.Screen name="home" component={HomeScreen} />
+      <Drawer.Screen options={{title:""}} name="Home" component={HomeScreen} />
     </Drawer.Navigator>
   )
 }
 
 export default AuthNavigation
-

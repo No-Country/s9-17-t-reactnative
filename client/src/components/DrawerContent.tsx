@@ -44,7 +44,7 @@ const DrawerContent = () => {
         style={style.DrawerItem}
         labelStyle={style.DrawerLabel}
         label={"Perfil"}
-        onPress={() => { navigation.navigate("home") }}
+        onPress={() => { navigation.navigate("profile") }}
       />
       <View style={style.ViewStyle}>
         <DrawerItem

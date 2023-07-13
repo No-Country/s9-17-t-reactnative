@@ -9,7 +9,7 @@ const Navigation = () => {
   const user = useAppSelector(app => app.user.user)
   return (
     <NavigationContainer>
-      {!user.id ?
+      {user.id ?
         <NoAuthNavigation />
         :
         <AuthNavigation />

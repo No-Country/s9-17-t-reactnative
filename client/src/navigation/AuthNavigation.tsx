@@ -4,6 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import DrawerContent from '../components/DrawerContent';
 import NewTrip from '../screens/NewTrip';
 import NewTripDetail from '../screens/NewTripDetail';
+import ReqTripScreen from '../screens/ReqTripScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -22,6 +23,7 @@ const AuthNavigation = () => {
       <Drawer.Screen options={{title:"Crear Nuevo Viaje",  
       headerTitleAlign: "center",
       }} name="newtripdetail" component={NewTripDetail} />
+      <Drawer.Screen options={{title:"", headerShown:false}} name="requestTrip" component={ReqTripScreen} />
     </Drawer.Navigator>
     
   )

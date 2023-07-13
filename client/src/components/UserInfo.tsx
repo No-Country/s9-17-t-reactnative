@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
-import starRating from "./starRating";
+import StarRating from "./starRating";
 import { LinearGradient } from 'expo-linear-gradient';
 
 interface UserInfoProps {
@@ -25,7 +25,7 @@ export const UserInfo: React.FC<UserInfoProps> = ({
         <Text className="text-base font-semibold mt-4 mb-3">{nameUser}</Text>
       </View>
       <View className="flex justify-center items-center">
-        <View className="flex flex-row">{starRating(score)}</View>
+        <View className="flex flex-row">{StarRating(score)}</View>
       </View>
     </View>
   );

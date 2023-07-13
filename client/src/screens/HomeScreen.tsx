@@ -78,7 +78,8 @@ const HomeScreen = () => {
       <ScrollView className="mt-5 px-4 gap-2">
         {filteredData.map((item, index) => {
           return (
-            <View
+            <TouchableOpacity
+              onPress={() => navigation.navigate("requestTrip", { item: item })}
               key={index}
               className="border-2 p-2 rounded-lg shadow-md shadow-slate-900 flex flex-row gap-y-2 gap-x-4"
             >
@@ -120,7 +121,7 @@ const HomeScreen = () => {
                 </View>
               </View>
               </View>
-            </View>
+            </TouchableOpacity>
           );
         })}
       </ScrollView>

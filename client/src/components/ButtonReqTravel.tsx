@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
 type Props = {
@@ -15,8 +15,7 @@ const ButtonReqTravel = ({ requestSent, requestAccepted, setRequestSent }: Props
           <TouchableOpacity
             onPress={() => setRequestSent(true)}
             disabled={requestSent}
-            className={`p-[10] m-4 rounded-full ${requestSent ? "bg-[#C4C4C4]" : "bg-[#f1c40f]"}`}
-          // style={tw.style(`p-[10] mx-4 rounded-full`, requestSent ? `bg-[#C4C4C4]` : `bg-[#f1c40f]`)}
+            className={`p-[10] m-4 rounded-full ${requestSent ? "bg-[#C4C4C4]" : "bg-[#FFA800]"}`}
           >
             <Text
               className={`text-center text-base font-medium ${requestSent ? "text-[#777]" : "text-black"}`}

@@ -10,6 +10,7 @@ import edit from "../assets/icons/Edit.png";
 import trash from "../assets/icons/Trash.png";
 import { UserInfo } from "../components/UserInfo";
 import { useNavigation } from "@react-navigation/native";
+import ArrowBackComponent from "../components/ArrowBackComponent";
 
 const MyProfile = () => {
   const navigate = useNavigation();
@@ -19,6 +20,7 @@ const MyProfile = () => {
 
   return (
     <View className="flex-1 justify-start items-center bg-[#fff]">
+      <ArrowBackComponent />
       <View className="flex w-full">
         <UserInfo imgSrc={profimeImg} nameUser={name} score={3} />
         <TouchableOpacity

@@ -36,22 +36,22 @@ const ReqTripScreen = ({ route }: { route: RouteProp<any> }) => {
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }} >
-      <ArrowBackComponent />
-      <View className={`h-[130px] max-h-[18%] border justify-center items-center`}>
+      <ArrowBackComponent isBg />
+      <View className={`h-[130px] max-h-[18%] border justify-center items-center bg-black`}>
         <Text>Mapa</Text>
       </View>
-      <View className={`h-min border-b-[#f1c40f] border-b mx-4 py-4 flex-row`}>
+      <View className={`h-min border-b-[#FFA800] border-b mx-4 py-4 flex-row`}>
         <Image source={{ uri: picture.large }} className={`h-[120px] w-[120px] rounded-full`} />
         <View className={`flex-1 justify-evenly items-center `}>
           <Text className={`text-base font-semibold `}>{name.first} {name.last}</Text>
-          <StarRating rating={3} styles={{ borderBottomWidth: 1, borderBottomColor: "#f1c40f", paddingBottom: 2 }} />
+          <StarRating rating={3} styles={{ borderBottomWidth: 1, borderBottomColor: "#FFA800", paddingBottom: 2 }} />
           <TouchableOpacity className={`flex-row items-center gap-1 text-base font-medium `}>
             <ChatCircleText width={16} height={16} />
             <Text className={`font-medium text-base`}>Contactar</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View className={`border-b border-b-[#f1c40f] h-min mx-4 py-4 gap-y-1`}>
+      <View className={`border-b border-b-[#FFA800] h-min mx-4 py-4 gap-y-1`}>
         <View className={`flex-row items-center gap-x-1`}>
           <Calendar width={20} height={20} />
           <Text className={`text-base font-normal`}>
@@ -77,7 +77,7 @@ const ReqTripScreen = ({ route }: { route: RouteProp<any> }) => {
           </View>
         </View>
       </View>
-      <View className={`h-min border-b-[#f1c40f] border-b mx-4 py-4 gap-y-[20]`}>
+      <View className={`h-min border-b-[#FFA800] border-b mx-4 py-4 gap-y-[20]`}>
         <View className={`flex-row items-center gap-x-1`}>
           <Car width={20} height={20} />
           <Text className={`text-base font-semibold`}>

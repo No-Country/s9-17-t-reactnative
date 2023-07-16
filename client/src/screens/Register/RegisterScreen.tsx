@@ -1,7 +1,7 @@
 import { View, TouchableOpacity, Text, Image, Button } from "react-native";
 import React, {useState} from "react";
 import { useNavigation } from "@react-navigation/native";
-import arrowBack from "../assets/icons/Arrow-back.png";
+import arrowBack from "../../assets/icons/Arrow-back.png";
 import FirstViewForm from "./FistViewRegisterForm";
 import SecondViewForm from "./SecondViewForm";
 import ThirdViewForm from "./ThirdViewForm";

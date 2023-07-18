@@ -1,7 +1,7 @@
 import { View, TouchableOpacity, Text, Image, SafeAreaView, Modal} from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import arrowList from "../assets/icons/navigate_before.png";
+import arrowList from "../../assets/icons/navigate_before.png";
 import { TextInput } from "react-native-paper";
 
 const FirstViewForm = () => {

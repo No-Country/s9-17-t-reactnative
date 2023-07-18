@@ -1,6 +1,6 @@
 import {View, Text, Image} from "react-native";
 import React, { useState } from "react";
-import elipse from "../assets/imgTest/Ellipse.png";
+import elipse from "../../assets/imgTest/Ellipse.png";
 
 const SecondViewForm = () => {
   return (

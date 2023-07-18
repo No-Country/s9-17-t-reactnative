@@ -1,0 +1,96 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id             String @id @default(uuid())
+    name           String
+    last_name      String
+    email          String
+    image          String
+    password       String
+    identification Json //validar al hacer la ruta
+    description    String
+
+    payments Payment[]
+
+    ratings_made Rating[] @relation("ratings_made")
+
+    ratings_received Rating[] @relation("ratings_received")
+
+    car_owned Car[]
+
+    travels_created Travel[] @relation("travel_maker")
+    traveler Traveler?
+    
+
+}
+
+model Rating {
+    id          String @id @default(uuid())
+    stars       Int
+    description String
+
+    ranker    User   @relation("ratings_made", fields: [ranker_id], references: [id])
+    ranker_id String
+
+    ranked    User   @relation("ratings_received", fields: [ranked_id], references: [id])
+    ranked_id String
+}
+
+model Car {
+    id             String   @id @default(uuid())
+    brand          String
+    identification String
+    color          String
+
+    travels        Travel[]
+    
+    car_owner User? @relation(fields: [car_owner_id],references: [id])
+    car_owner_id String
+}
+
+model Travel {
+    id            String   @id @default(uuid())
+    origin        String
+    destination   String
+    day_of_travel DateTime
+    places        Int
+    description   String
+    price         Int
+
+    car    Car?    @relation(fields: [car_id], references: [id])
+    car_id String?
+
+    payments Payment[]
+    travelers Traveler[]
+
+    creator User @relation("travel_maker",fields: [creator_id], references: [id])
+    creator_id String
+}
+
+model Payment {
+    id String @id @default(uuid())
+    mercado_pago Boolean
+    cash Boolean
+
+    travels   Travel? @relation(fields: [travel_id], references: [id])
+    travel_id String
+
+    user User? @relation(fields: [userId], references: [id])
+    userId String?
+}
+
+model Traveler {
+  id     String  @id @default(uuid())
+  userId String @unique
+  travelId String
+
+  user   User    @relation(fields: [userId], references: [id])
+  travel Travel  @relation(fields: [travelId], references: [id])
+}

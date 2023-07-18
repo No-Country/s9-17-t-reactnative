@@ -20,7 +20,9 @@ export class TravelController {
             travelers:true, 
             car:true, 
             creator:true, 
-            payments:true} });
+            payments:true,
+            ratings: true
+        } });
       if (!travel) {
         return res.status(404).json({ error: 'Travel not found.' });
       }
@@ -33,8 +35,17 @@ export class TravelController {
   async createTravel(req: Request, res: Response) {
     const { origin, destination, day_of_travel, places, description, price, car_id, creator_id } = req.body;
     try {
-      const newTravel = await prisma.travel.create({
-        data: {
+
+        const car = await prisma.car.findUnique({ where: { id: car_id }, select: { car_owner_id: true } });
+        if (!car) {
+          return res.status(404).json({ error: 'Car not found.' });
+        }
+    
+        if (car.car_owner_id !== creator_id) {
+          return res.status(403).json({ error: 'You are not the owner of the car.' });
+        }
+         const newTravel = await prisma.travel.create({
+          data: {
           origin,
           destination,
           day_of_travel,
@@ -45,7 +56,7 @@ export class TravelController {
           creator: { connect: { id: creator_id } },
         },
       });
-      res.status(201).json(newTravel);
+      res.status(201).json(newTravel);  
     } catch (error) {
       res.status(500).json({ error: 'Failed to create travel.' });
     }

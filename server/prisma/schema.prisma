@@ -41,6 +41,10 @@ model Rating {
 
     ranked    User   @relation("ratings_received", fields: [ranked_id], references: [id])
     ranked_id String
+
+    travel    Travel @relation(fields: [travel_id], references: [id])
+    travel_id String
+
 }
 
 model Car {
@@ -69,6 +73,7 @@ model Travel {
 
     payments Payment[]
     travelers Traveler[]
+    ratings Rating[]
 
     creator User @relation("travel_maker",fields: [creator_id], references: [id])
     creator_id String

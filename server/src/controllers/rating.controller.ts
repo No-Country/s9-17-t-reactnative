@@ -25,7 +25,7 @@ export class RatingController {
   }
 
   async createRating(req: Request, res: Response) {
-    const { stars, description, ranker_id, ranked_id } = req.body;
+    const { stars, description, ranker_id, ranked_id,travel_id  } = req.body;
     try {
       const newRating = await prisma.rating.create({
         data: {
@@ -33,6 +33,8 @@ export class RatingController {
           description,
           ranker: { connect: { id: ranker_id } },
           ranked: { connect: { id: ranked_id } },
+          travel: { connect: { id:travel_id }}
+
         },
       });
       res.status(201).json(newRating);

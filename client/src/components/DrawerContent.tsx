@@ -12,6 +12,8 @@ import Notifications from "../assets/icons/Notifications.svg"
 import Profile from "../assets/icons/profile.svg"
 import Plus from "../assets/icons/Plus.svg"
 import profimeImg from "../assets/imgTest/profile1.jpg";
+import { useAppDispatch } from '../app/hooks'
+import { login } from '../features/user/userSlice'
 
 type Icons = {
   Bank: (props: { focused: boolean; size: number; color: string; }) => ReactNode;
@@ -36,6 +38,7 @@ const Icons: Icons = {
 
 
 const DrawerContent = () => {
+  const dispatch = useAppDispatch()
   const navigation = useNavigation()
   return (
     <DrawerContentScrollView
@@ -114,7 +117,7 @@ const DrawerContent = () => {
             style={style.DrawerItem}
             labelStyle={style.DrawerLabel}
             label={"Cerrar sesión"}
-            onPress={() => { navigation.navigate("home") }}
+            onPress={() => { dispatch(login(null)) }}
           />
         </View>
       </View>

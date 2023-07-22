@@ -1,22 +1,29 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, TextInput } from "react-native";
+import { View, TextInput } from "react-native";
 import { Entypo } from "@expo/vector-icons";
+import { useEffect, useState } from "react";
+import { useAppDispatch } from "../app/hooks";
+import { getTripsFiltered } from "../features/trip/tripSlice";
 
-const Search = () =>{
-
-        
-
-
-    return (
-        <View className="py-3 relative">
-        <TextInput className="border-2 text-xs border-slate-700 rounded-full bg-slate-50 px-1"
+const Search = () => {
+  const [input, setInput] = useState("")
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(getTripsFiltered(input))
+  }, [input])
+  return (
+    <View className="flex-1 flex-row my-3 px-3 justify-center items-center gap-x-2 rounded-full bg-white">
+      <TextInput className=" text-xs"
         placeholder="Busqueda por usuario, Estabelcimiento, Destino"
-        />
-        <View className="absolute top-[40%] right-2">
-        <Entypo  name="magnifying-glass" size={27} />
-        </View>
-        </View>
-      )
+        onChangeText={(e) => {
+          setInput(e)
+        }}
+      />
+      <View className="">
+        <Entypo name="magnifying-glass" size={27} />
+      </View>
+    </View>
+  )
 
 }
 

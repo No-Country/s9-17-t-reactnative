@@ -30,9 +30,9 @@ const StarRating = ({ rating, styles }: { rating?: number, styles: StyleProp<Vie
 }
 
 const ReqTripScreen = ({ route }: { route: RouteProp<any> }) => {
-  const { name, picture, location } = route.params?.item
+  const { name, picture, location, day } = route.params?.item
   const [requestSent, setRequestSent] = useState(false)
-  const [requestAccepted, setRequestAccepted] = useState(false)
+  const [requestAccepted] = useState(false)
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }} >
@@ -55,7 +55,7 @@ const ReqTripScreen = ({ route }: { route: RouteProp<any> }) => {
         <View className={`flex-row items-center gap-x-1`}>
           <Calendar width={20} height={20} />
           <Text className={`text-base font-normal`}>
-            Lunes
+            {day}
           </Text>
         </View>
         <View className={` pl-2 gap-y-[2px] max-w-[70%]`}>

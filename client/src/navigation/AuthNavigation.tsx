@@ -7,6 +7,7 @@ import NewTripDetail from '../screens/NewTripDetail';
 import ReqTripScreen from '../screens/ReqTripScreen';
 import MyProfile from '../screens/MyProfile';
 import UserCommentsProfile from '../screens/UserCommentsProfile';
+import Search from '../components/Search';
 
 const Drawer = createDrawerNavigator();
 
@@ -20,7 +21,7 @@ const AuthNavigation = () => {
         }
       }}
     >
-      <Drawer.Screen options={{ title: "" }} name="Home" component={HomeScreen} />
+      <Drawer.Screen options={{  headerTitle: () => <Search /> }} name="Home" component={HomeScreen} />
       <Drawer.Screen options={{ title: "", headerShown: false }} name="myProfile" component={MyProfile} />
       <Drawer.Screen options={{ title: "", headerShown: false }} name="requestTrip" component={ReqTripScreen} />
       <Drawer.Screen options={{ title: "", headerShown: false }} name='myprofile-comments' component={UserCommentsProfile} />

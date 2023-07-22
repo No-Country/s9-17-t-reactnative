@@ -2,20 +2,14 @@ import { View, SafeAreaView, Text } from "react-native";
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Search from "../components/Search";
-
-import { getTrips } from "../features/trip/tripSlice";
-import { useAppDispatch } from "../app/hooks";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 import AvailableTripsComponent from "../components/AvailableTripsComponent";
 
 const Tab = createMaterialTopTabNavigator();
 const HomeScreen = () => {
-  const dispatch = useAppDispatch()
   const navigation = useNavigation();
-  useEffect(() => {
-    dispatch(getTrips())
-  }, [])
+
   useEffect(() => {
     navigation.setOptions({
       headerTitle: () => <Search />,
@@ -32,7 +26,7 @@ const HomeScreen = () => {
           tabBarPressColor: "transparent",
           lazy: true,
           tabBarScrollEnabled: true,
-          tabBarItemStyle: { width: 95 },
+          tabBarItemStyle: { width: "auto" },
           tabBarStyle: { backgroundColor: '#ffaa00' },
           lazyPlaceholder: Loading
         }}

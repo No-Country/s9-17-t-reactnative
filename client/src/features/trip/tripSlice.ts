@@ -17,10 +17,10 @@ const tripSlice = createSlice({
     },
     setTripsFiltered: (state, { payload }) => {
       const tripsFiltered = state.trips.filter(item =>
-        item.location.city.includes(payload) ||
-        item.location.state.includes(payload) ||
-        item.name.first.includes(payload) ||
-        item.name.last.includes(payload)
+        item.location.city.toLowerCase().toLowerCase().includes(payload.toLowerCase()) ||
+        item.location.state.toLowerCase().includes(payload.toLowerCase()) ||
+        item.name.first.toLowerCase().includes(payload.toLowerCase()) ||
+        item.name.last.toLowerCase().includes(payload.toLowerCase())
       )
       state.tripsFiltered = tripsFiltered
     }
@@ -32,7 +32,7 @@ export default tripSlice.reducer
 
 export const getTrips = () => async (dispatch: Dispatch) => {
   try {
-    const response = await axios.get("https://randomuser.me/api/?results=20");
+    const response = await axios.get("https://randomuser.me/api/?results=30");
     const data = await response.data
     dispatch(setTrips(data.results))
   } catch (error) {

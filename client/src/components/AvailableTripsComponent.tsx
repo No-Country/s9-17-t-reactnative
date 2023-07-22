@@ -42,14 +42,14 @@ export default function AvailableTripsComponent({ route }) {
               >
                 <TouchableOpacity
                   onPress={() => navigation.navigate("requestTrip", { item: item })}
-                  className=" flex flex-row  px-2 w-max bg-white rounded-2xl items-center"
+                  className=" flex flex-row  p-2 w-max bg-white rounded-2xl items-center "
                 >
                   <Image
                     className="w-16 h-16 rounded-full mr-2"
                     source={{ uri: item.picture.large }}
                   />
                   <View className=' flex-1'>
-                    <View className={`h-min py-2 gap-y-1 border-b-[1px] border-b-gray-300`}>
+                    <View className={`h-min py-1 gap-y-1 border-b-[1px] border-b-gray-300`}>
                       <View className={` pl-2 gap-y-[2px] max-w-[70%]`}>
                         <View className={`flex-row items-center  ml-[-3px] mb-[-5px] `}>
                           <CircleBlack />

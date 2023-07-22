@@ -10,7 +10,7 @@ export default function Boton() {
       style={
         styles.button
       }
-      onPress={() => dispatch(login())}
+      onPress={() => dispatch(login(1))}
     >
       <Text style={{ textAlign: 'center' }} >Ingresar</Text>
 

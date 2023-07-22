@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HomeScreen from '../screens/HomeScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import DrawerContent from '../components/DrawerContent';
@@ -9,9 +9,16 @@ import MyProfile from '../screens/MyProfile';
 import UserCommentsProfile from '../screens/UserCommentsProfile';
 import Search from '../components/Search';
 
+import { getTrips } from "../features/trip/tripSlice";
+import { useAppDispatch } from "../app/hooks";
 const Drawer = createDrawerNavigator();
 
 const AuthNavigation = () => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(getTrips())
+  }, [])
   return (
     <Drawer.Navigator
       drawerContent={DrawerContent}

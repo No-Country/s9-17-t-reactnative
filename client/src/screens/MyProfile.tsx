@@ -20,7 +20,7 @@ const MyProfile = () => {
 
   return (
     <View className="flex-1 justify-start items-center bg-[#fff]">
-      <ArrowBackComponent />
+      <ArrowBackComponent edit='absolute top-6 left-5 z-10 rounded-full p-1' />
       <View className="flex w-full">
         <UserInfo imgSrc={profimeImg} nameUser={name} score={3} />
         <TouchableOpacity

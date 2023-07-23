@@ -80,7 +80,7 @@ const DrawerContent = () => {
             style={style.DrawerItem}
             labelStyle={style.DrawerLabel}
             label={"Mis viajes"}
-            onPress={() => { navigation.navigate("home") }}
+            onPress={() => { navigation.navigate("mytrips") }}
           />
         </View>
         <View style={style.ViewStyle}>
@@ -96,7 +96,7 @@ const DrawerContent = () => {
             style={style.DrawerItem}
             labelStyle={style.DrawerLabel}
             label={"Mensajes"}
-            onPress={() => { navigation.navigate("home") }}
+            onPress={() => { navigation.navigate("messages") }}
           />
         </View>
         <View style={{ ...style.ViewStyle, flex: 1 }}>

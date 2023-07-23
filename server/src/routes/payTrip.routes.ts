@@ -5,3 +5,5 @@ import { Router } from "express";
 const payTrip = Router()
 
 payTrip.post("/", stripePayment)
+
+export default payTrip

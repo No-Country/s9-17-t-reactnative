@@ -36,7 +36,7 @@ const ReqTripScreen = ({ route }: { route: RouteProp<any> }) => {
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }} >
-      <ArrowBackComponent isBg />
+      <ArrowBackComponent edit='absolute top-6 left-5 z-10 rounded-full p-1 bg-white'/>
       <View className={`h-[130px] max-h-[18%] border justify-center items-center bg-black`}>
         <Text>Mapa</Text>
       </View>

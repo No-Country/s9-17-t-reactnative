@@ -11,6 +11,9 @@ import Search from '../components/Search';
 
 import { getTrips } from "../features/trip/tripSlice";
 import { useAppDispatch } from "../app/hooks";
+import MessageScreen from '../screens/MessageScreen';
+import ArrowBackComponent from '../components/ArrowBackComponent';
+import MyTrips from '../screens/MyTrips';
 const Drawer = createDrawerNavigator();
 
 const AuthNavigation = () => {
@@ -28,10 +31,28 @@ const AuthNavigation = () => {
         }
       }}
     >
-      <Drawer.Screen options={{  headerTitle: () => <Search /> }} name="Home" component={HomeScreen} />
+      <Drawer.Screen options={{ headerTitle: () => <Search /> }} name="Home" component={HomeScreen} />
       <Drawer.Screen options={{ title: "", headerShown: false }} name="myProfile" component={MyProfile} />
       <Drawer.Screen options={{ title: "", headerShown: false }} name="requestTrip" component={ReqTripScreen} />
-      <Drawer.Screen options={{ title: "", headerShown: false }} name='myprofile-comments' component={UserCommentsProfile} />
+      <Drawer.Screen
+        options={{
+          title: "Mensajes",
+          headerTitleAlign: "center",
+          headerLeft: () => (<ArrowBackComponent />)
+        }}
+        name="messages"
+        component={MessageScreen}
+      />
+      <Drawer.Screen
+        options={{
+          title: "Mis viajes",
+          headerTitleAlign: "center",
+          headerLeft: () => (<ArrowBackComponent />)
+        }}
+        name="mytrips"
+        component={MyTrips}
+      />
+      <Drawer.Screen options={{ title: "", headerShown: false, }} name='myprofile-comments' component={UserCommentsProfile} />
       <Drawer.Screen options={{
         title: "Crear Nuevo Viaje",
         headerTitleAlign: "center",

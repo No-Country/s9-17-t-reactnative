@@ -8,10 +8,10 @@ datasource db {
 }
 
 model User {
-    id             String @id @default(uuid())
+    id             String  @id @default(uuid())
     name           String
     last_name      String
-    email          String @unique
+    email          String  @unique
     image          String?
     password       String
     identification Json? //validar al hacer la ruta
@@ -25,10 +25,8 @@ model User {
 
     car_owned Car[]
 
-    travels_created Travel[] @relation("travel_maker")
-    traveler Traveler?
-    
-
+    travels_created Travel[]  @relation("travel_maker")
+    traveler        Traveler?
 }
 
 model Rating {
@@ -44,18 +42,17 @@ model Rating {
 
     travel    Travel @relation(fields: [travel_id], references: [id])
     travel_id String
-
 }
 
 model Car {
-    id             String   @id @default(uuid())
+    id             String @id @default(uuid())
     brand          String
     identification String
     color          String
 
-    travels        Travel[]
-    
-    car_owner User? @relation(fields: [car_owner_id],references: [id])
+    travels Travel[]
+
+    car_owner    User?  @relation(fields: [car_owner_id], references: [id])
     car_owner_id String
 }
 
@@ -71,31 +68,53 @@ model Travel {
     car    Car?    @relation(fields: [car_id], references: [id])
     car_id String?
 
-    payments Payment[]
+    payments  Payment[]
     travelers Traveler[]
-    ratings Rating[]
+    ratings   Rating[]
 
-    creator User @relation("travel_maker",fields: [creator_id], references: [id])
+    creator    User   @relation("travel_maker", fields: [creator_id], references: [id])
     creator_id String
 }
 
+enum State {
+    process
+    completed
+    rejected
+}
+
+model Stripe {
+    id        String  @id @default(uuid())
+    state     State
+    payment    Payment? 
+}
+
+enum Method {
+    stripe
+    cash
+}
+
 model Payment {
-    id String @id @default(uuid())
-    mercado_pago Boolean
-    cash Boolean
+    id     String @id @default(uuid())
+    method Method
+    amount Int
 
     travels   Travel? @relation(fields: [travel_id], references: [id])
     travel_id String
 
-    user User? @relation(fields: [userId], references: [id])
-    userId String?
+    user   User?   @relation(fields: [user_id], references: [id])
+    user_id String?
+
+    stripe    Stripe? @relation(fields: [stripe_id], references: [id])
+    stripe_id String? @unique
 }
 
-model Traveler {
-  id     String  @id @default(uuid())
-  userId String @unique
-  travelId String
 
-  user   User    @relation(fields: [userId], references: [id])
-  travel Travel  @relation(fields: [travelId], references: [id])
+
+model Traveler {
+    id       String @id @default(uuid())
+    userId   String @unique
+    travelId String
+
+    user   User   @relation(fields: [userId], references: [id])
+    travel Travel @relation(fields: [travelId], references: [id])
 }

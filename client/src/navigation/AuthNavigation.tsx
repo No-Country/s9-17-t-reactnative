@@ -14,6 +14,7 @@ import { useAppDispatch } from "../app/hooks";
 import MessageScreen from '../screens/MessageScreen';
 import ArrowBackComponent from '../components/ArrowBackComponent';
 import MyTrips from '../screens/MyTrips';
+import NewTripSecurity from '../screens/NewTripSecurity';
 const Drawer = createDrawerNavigator();
 
 const AuthNavigation = () => {
@@ -56,11 +57,18 @@ const AuthNavigation = () => {
       <Drawer.Screen options={{
         title: "Crear Nuevo Viaje",
         headerTitleAlign: "center",
+        headerLeft: () => (<ArrowBackComponent />)
       }} name="newTrip" component={NewTrip} />
       <Drawer.Screen options={{
         title: "Crear Nuevo Viaje",
         headerTitleAlign: "center",
+        headerLeft: () => (<ArrowBackComponent />)
       }} name="newtripdetail" component={NewTripDetail} />
+      <Drawer.Screen options={{
+        title: "Crear Nuevo Viaje",
+        headerTitleAlign: "center",
+        headerLeft: () => (<ArrowBackComponent />)
+      }} name="newtripsecurity" component={NewTripSecurity} />
     </Drawer.Navigator>
 
   )

@@ -1,27 +1,16 @@
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { login } from '../features/user/userSlice'
-import { useAppDispatch } from '../app/hooks'
 
-export default function Boton() {
-  const dispatch = useAppDispatch()
+export default function Boton({ action, text, isDisable }:{ action:any, text: string, isDisable?:boolean }) {
   return (
     <TouchableOpacity
-      style={
-        styles.button
-      }
-      onPress={() => dispatch(login(1))}
+      className={`${isDisable && "opacity-50"}`}
+      style={styles.button}
+      onPress={action}
+      disabled={isDisable}
     >
-      <Text style={{ textAlign: 'center' }} >Ingresar</Text>
-
-
-
-
+      <Text style={{ textAlign: 'center', fontWeight: "500", fontSize: 16, }} >{text}</Text>
     </TouchableOpacity>
-
-
-
-
   )
 }
 
@@ -31,7 +20,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: '#FFA800',
     paddingVertical: 10,
-    minWidth: '80%',
+    width: "100%",
   }
 
 })

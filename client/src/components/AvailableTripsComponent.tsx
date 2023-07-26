@@ -33,7 +33,6 @@ export default function AvailableTripsComponent({ route }) {
     !showTrips.length && setThereTrips(false)
   }, [showTrips])
 
-
   return (
     <View className="flex-1 bg-white">
       {trip.length > 0 ?
@@ -47,7 +46,7 @@ export default function AvailableTripsComponent({ route }) {
                 if (item.day === route.name) {
                   return (
                     <Shadow
-                      key={index}
+                      key={"available-" + index}
                       style={{
                         minWidth: "85%",
                         borderRadius: 16,

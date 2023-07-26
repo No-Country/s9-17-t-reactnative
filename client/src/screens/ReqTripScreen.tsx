@@ -7,7 +7,7 @@ import {
   StyleProp,
   ViewStyle,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import star from "../assets/icons/StarFull.png";
 import { AirbnbRating } from "react-native-ratings";
 import ChatCircleText from "../assets/icons/ChatCircleText.svg";
@@ -24,6 +24,9 @@ import ArrowDropDown from "../assets/icons/ArrowDropDown.svg";
 import ButtonReqTravel from "../components/ButtonReqTravel";
 import { RouteProp } from "@react-navigation/native";
 import MapView from "react-native-maps";
+import { useAppSelector, useAppDispatch } from "../app/hooks";
+import { setTripsConfirmed, login } from "../features/user/userSlice";
+import PayTripsComponent from "../components/PayTripsComponent";
 const StarRating = ({
   rating,
   styles,
@@ -45,16 +48,38 @@ const StarRating = ({
 };
 
 const ReqTripScreen = ({ route }: { route: RouteProp<any> }) => {
-  const { name, picture, location, day } = route.params?.item;
+  const { name, picture, location, day, login } = route.params?.item;
+  const tripsConfirmed = useAppSelector(store => store.user.user.tripsConfirmed)
+
   const [requestSent, setRequestSent] = useState(false);
-  const [requestAccepted] = useState(false);
+  const [requestAccepted, setRequestAccepted] = useState(false)
   const [origin, setOrigin] = useState({
     latitude: -34.604442,
     longitude: -58.430154,
   });
 
+  const dispatch = useAppDispatch()
+
+
+  const sentRequest = () => {
+    dispatch(setTripsConfirmed(login.uuid))
+    setTimeout(() => {
+      setRequestAccepted(true)
+    }, 2000)
+  }
+  useEffect(() => {
+    if (tripsConfirmed.includes(login.uuid)) {
+      setRequestAccepted(true)
+      setRequestSent(true)
+    } else {
+      setRequestAccepted(false)
+      setRequestSent(false)
+    }
+    console.log(tripsConfirmed.includes(login.uuid));
+  }, [login])
+
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom:20 }}>
       <ArrowBackComponent edit="absolute top-6 left-5 z-10 rounded-full p-1 bg-white" />
       <MapView
         initialRegion={{
@@ -151,11 +176,11 @@ const ReqTripScreen = ({ route }: { route: RouteProp<any> }) => {
           </View>
         </View>
       </View>
-      <ButtonReqTravel
-        requestSent={requestSent}
-        requestAccepted={requestAccepted}
-        setRequestSent={setRequestSent}
+      <ButtonReqTravel action={sentRequest} requestSent={requestSent} requestAccepted={requestAccepted} setRequestSent={setRequestSent}
       />
+      {requestAccepted &&
+        <PayTripsComponent />
+      }
     </ScrollView>
   );
 };

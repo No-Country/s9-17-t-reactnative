@@ -4,16 +4,17 @@ import React from 'react'
 type Props = {
   requestSent: boolean,
   requestAccepted: boolean,
-  setRequestSent: React.Dispatch<React.SetStateAction<boolean>>
+  setRequestSent: React.Dispatch<React.SetStateAction<boolean>>,
+  action: () => void
 }
 
-const ButtonReqTravel = ({ requestSent, requestAccepted, setRequestSent }: Props) => {
+const ButtonReqTravel = ({ requestSent, requestAccepted, setRequestSent, action }: Props) => {
   return (
     <View className={`h-min my-auto`}>
       {
         !requestAccepted ?
           <TouchableOpacity
-            onPress={() => setRequestSent(true)}
+            onPress={() => { action(), setRequestSent(true) }}
             disabled={requestSent}
             className={`p-[10] m-4 rounded-full ${requestSent ? "bg-[#C4C4C4]" : "bg-[#FFA800]"}`}
           >

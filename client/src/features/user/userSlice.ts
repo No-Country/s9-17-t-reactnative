@@ -9,6 +9,7 @@ interface User {
   firstName: string;
   lastName: string;
   dateOfBirth: string;
+  tripsConfirmed: string[]
 }
 interface InitialState {
   user: User
@@ -20,7 +21,8 @@ const initialState: InitialState = {
     email: "",
     firstName: "",
     lastName: "",
-    dateOfBirth: ""
+    dateOfBirth: "",
+    tripsConfirmed: []
   }
 }
 
@@ -30,10 +32,13 @@ const userSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.user.id = action.payload
-    }
+    },
+    addTripsConfirmed: (state, action) => {
+      state.user.tripsConfirmed.push(action.payload)
+    },
   }
 })
-export const { login } = userSlice.actions
+export const { login, addTripsConfirmed } = userSlice.actions
 export default userSlice.reducer
 
 export const setLogin = (dataLogin: { email: string, password: string }) => async (dispatch: Dispatch) => {
@@ -49,4 +54,7 @@ export const setLogin = (dataLogin: { email: string, password: string }) => asyn
     console.log(error);
 
   }
+}
+export const setTripsConfirmed = (id: string) => (dispatch: Dispatch) => {
+  dispatch(addTripsConfirmed(id))
 }

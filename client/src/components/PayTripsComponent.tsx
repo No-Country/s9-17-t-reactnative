@@ -15,13 +15,13 @@ export default function PayTripsComponent() {
   const payTrip = async () => {
     try {
       const finalAmount = parseInt(amount);
-      const response = await axios.post(`${process.env.EXPO_PUBLIC_URL_BASE}payTrip`, {
+      const response = await axios.post(`http://192.168.2.110:8080/payTrip`, {
         amount: finalAmount,
         customerData,
-        travelData: {
-          travel_id: "123",
-          user_id: "123"
-        }
+        // travelData: {
+        //   travel_id: "dda4ef1a-6477-4bfb-9212-401547f9e53e",
+        //   user_id: "abdb2adf-e2fc-4edd-9d4a-73299c0c5481"
+        // }
       })
       const data = await response.data
       console.log(data.clientSecret);
@@ -35,9 +35,7 @@ export default function PayTripsComponent() {
         console.error(initSheet.error);
         return Alert.alert(initSheet.error.message);
       }
-      const presentSheet = await stripe.presentPaymentSheet({
-
-      });
+      const presentSheet = await stripe.presentPaymentSheet();
       if (presentSheet.error) {
         console.log("presentSheet error");
 

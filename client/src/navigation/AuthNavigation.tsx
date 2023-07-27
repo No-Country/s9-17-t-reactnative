@@ -15,6 +15,7 @@ import MessageScreen from '../screens/MessageScreen';
 import ArrowBackComponent from '../components/ArrowBackComponent';
 import MyTrips from '../screens/MyTrips';
 import NewTripSecurity from '../screens/NewTripSecurity';
+import TravelCreated from '../screens/TravelCreated';
 const Drawer = createDrawerNavigator();
 
 const AuthNavigation = () => {
@@ -69,6 +70,11 @@ const AuthNavigation = () => {
         headerTitleAlign: "center",
         headerLeft: () => (<ArrowBackComponent />)
       }} name="newtripsecurity" component={NewTripSecurity} />
+      <Drawer.Screen options={{
+        title: "Crear nuevo viaje",
+        headerTitleAlign: "center",
+        headerLeft: () => (<ArrowBackComponent />)
+      }} name="travelCreated" component={TravelCreated} />
     </Drawer.Navigator>
 
   )

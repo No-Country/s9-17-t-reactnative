@@ -65,7 +65,7 @@ const ReqTripScreen = ({ route }: { route: RouteProp<any> }) => {
     dispatch(setTripsConfirmed(login.uuid))
     setTimeout(() => {
       setRequestAccepted(true)
-    }, 2000)
+    }, 4000)
   }
   useEffect(() => {
     if (tripsConfirmed.includes(login.uuid)) {

@@ -4,15 +4,31 @@ import { useNavigation } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
 import { Shadow } from "react-native-shadow-2";
 import { TextInputMask } from 'react-native-masked-text'
-
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { useAppDispatch } from "../app/hooks";
+import { createNewTrip } from "../features/trip/tripSlice";
 const NewTrip = () => {
   const navigation = useNavigation();
   const [hour, setHour] = useState("")
-
+  const [origin, setOrigin] = useState("")
+  const [destination, setDestination] = useState("")
+  const [date, setDate] = useState()
+  const [show, setShow] = useState(false)
   const next = (): void => {
-    navigation.navigate("newtripdetail")
+    navigation.navigate("newtripdetail", {
+      hour,
+      origin,
+      destination,
+      date,
+      places: ""
+    })
   };
 
+
+  const change = (value, selectedDate) => {
+    setShow(false)
+    setDate(selectedDate)
+  }
   return (
     <SafeAreaView className="flex w-full h-full">
       <ScrollView contentContainerStyle={{}} className="px-4 py-5 flex-1 h-full gap-y-3">
@@ -33,6 +49,7 @@ const NewTrip = () => {
               <TextInput
                 className="flex-1 ml-2 w-full"
                 placeholder="Nombre del establecimiento (Si aplica)"
+                onChangeText={(e) => setOrigin(e)}
               />
             </View>
           </Shadow>
@@ -48,6 +65,7 @@ const NewTrip = () => {
               <TextInput
                 className="w-full flex-1 ml-2"
                 placeholder="Nombre del establecimiento (Si aplica)"
+                onChangeText={(e) => setDestination(e)}
               />
             </View>
           </Shadow>
@@ -55,8 +73,20 @@ const NewTrip = () => {
           <Shadow containerStyle={{ marginVertical: 15 }} className="w-full px-4 py-7 flex rounded-md" >
             <View className=" border-b-[#FFA800] pb-2 border-b-2 flex flex-row justify-start items-center mb-5 ">
               < Entypo name="calendar" size={14} />
-              <Text className="ml-2" >15/07/2023</Text>
-
+              <TouchableOpacity onPress={() => setShow(true)}>
+                <Text className="ml-2 opacity-50" >{date ? date.toDateString() : new Date().toDateString()}</Text>
+              </TouchableOpacity>
+              {show &&
+                <DateTimePicker
+                  minimumDate={new Date}
+                  disabled={show}
+                  testID="dateTimePicker"
+                  value={new Date}
+                  mode={"date"}
+                  is24Hour={true}
+                  onChange={change}
+                />
+              }
             </View>
             <View className=" border-b-[#FFA800] pb-2 border-b-2 flex flex-row justify-start  items-center">
               < Entypo name="clock" size={14} />

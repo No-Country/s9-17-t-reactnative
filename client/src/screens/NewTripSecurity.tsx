@@ -10,13 +10,31 @@ import Cash from "../assets/icons/Cash.svg"
 import Boton from '../components/Boton';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import CircleBlack from '../assets/icons/CircleBlack.svg'
+import { useAppDispatch } from '../app/hooks';
+import { createNewTrip } from '../features/trip/tripSlice';
+import { useNavigation } from '@react-navigation/native';
 
-const NewTripSecurity = () => {
+const NewTripSecurity = ({ route }) => {
+  const { data } = route.params
+  const [price, setPrice] = useState()
+  // console.log(route.params);
+  const dispatch = useAppDispatch()
   const [isEnabled, setisEnable] = useState(false)
   const [isChecked, setisChecked] = useState(false)
+
+  const navigation = useNavigation()
   const toggleSwitch = () => {
     setisEnable(!isEnabled)
+  }
 
+  const createTrip = () => {
+    navigation.navigate("travelCreated")
+    dispatch(createNewTrip(
+      {
+        ...data,
+        price
+      }
+    ))
   }
   return (
     <SafeAreaView className='flex-1'>
@@ -67,6 +85,7 @@ const NewTripSecurity = () => {
                 className="flex-1 text-base font-normal"
                 keyboardType="numeric"
                 placeholder="$100"
+                onChangeText={(e) => setPrice(e)}
               />
             </View>
           </Shadow>
@@ -96,7 +115,7 @@ const NewTripSecurity = () => {
             </View>
           </Shadow>
           <View className='my-3'>
-            <Boton isDisable={!isChecked} action={undefined} text={"Crear nuevo viaje"} />
+            <Boton isDisable={!isChecked} action={createTrip} text={"Crear nuevo viaje"} />
           </View>
 
         </View>

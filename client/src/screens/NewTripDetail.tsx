@@ -1,16 +1,21 @@
 import { View, Text, ScrollView, TextInput, TouchableOpacity, SafeAreaView } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
 import { Shadow } from "react-native-shadow-2";
 
 
-const NewTripDetail = () => {
+const NewTripDetail = ({ route }) => {
+  const [places, setPlaces] = useState("")
+  const [description, setDescription] = useState("")
+  const dataTravel = route.params
+
+
   const navigation = useNavigation();
 
 
   const next = (): void => {
-    navigation.navigate("newtripsecurity")
+    navigation.navigate("newtripsecurity", { data: { ...dataTravel, places, description} })
   };
 
   return (
@@ -37,6 +42,7 @@ const NewTripDetail = () => {
                 className="flex-1"
                 keyboardType="numeric"
                 placeholder="Cantidad de asientos disponibles"
+                onChangeText={(e) => setPlaces(e)}
               />
             </View>
           </Shadow>
@@ -49,6 +55,7 @@ const NewTripDetail = () => {
         por ejemplo: Parada para cargar combustible.
         "
           style={{ borderWidth: 1, borderColor: 'gray', padding: 15 }}
+          onChangeText={(e) => setDescription(e)}
         />
 
         <TouchableOpacity

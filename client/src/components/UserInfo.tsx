@@ -2,18 +2,21 @@ import React from "react";
 import { View, Text, Image } from "react-native";
 import starRating from "./starRating";
 import { LinearGradient } from 'expo-linear-gradient';
+import commentsUser from "../screens/pruebaComments";
 
 interface UserInfoProps {
   imgSrc: any;
   nameUser: string;
-  score: number;
 }
 
 export const UserInfo: React.FC<UserInfoProps> = ({
   imgSrc,
-  nameUser,
-  score = 3,
+  nameUser
 }) => {
+  
+  const totalScore = commentsUser.reduce((sum, user) => sum + user.score, 0);
+  const averageScore = Math.floor(totalScore / commentsUser.length);
+
   return (
     <View className="w-full ">
       <LinearGradient colors={['#FFA800', '#FAFAFA']}>
@@ -25,7 +28,7 @@ export const UserInfo: React.FC<UserInfoProps> = ({
         <Text className="text-base font-semibold mt-4 mb-3">{nameUser}</Text>
       </View>
       <View className="flex justify-center items-center">
-        <View className="flex flex-row">{starRating(score)}</View>
+        <View className="flex flex-row">{starRating(averageScore)}</View>
       </View>
     </View>
   );

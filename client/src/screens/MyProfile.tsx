@@ -9,18 +9,35 @@ import car from "../assets/icons/Car.png";
 import edit from "../assets/icons/Edit.png";
 import trash from "../assets/icons/Trash.png";
 import { UserInfo } from "../components/UserInfo";
-import { useNavigation } from "@react-navigation/native";
+import commentsUser  from "./pruebaComments";
 
-const MyProfile = () => {
-  const navigate = useNavigation();
-  const name: string = "Julian Taboga";
+
+const MyProfile = ({ navigation: { navigate } }) => {
+
+  const nameUser: string = "Julian";
+  const lastNameUser: string = "Taboga";
+  const typeDocUser: string = "DNI"
+  const documentUser: string = "123456789";
+  const emailUser: string = "Julian Taboga";
+
+  const dataInfo = {
+    name: nameUser,
+    lastName: lastNameUser,
+    typeDoc: typeDocUser,
+    document: documentUser,
+    email: emailUser,
+  }
 
   const [modalVisible, setModalVisible] = useState(false);
 
+  const editarPerfil = () =>{
+    navigate('editProfile', {dataUser: {dataInfo}})
+    setModalVisible(!modalVisible)
+  }
   return (
-    <View className="flex-1 justify-start items-center bg-[#fff]">
+    <View className="flex-1 justify-start items-center w-full bg-[#fff]">
       <View className="flex w-full">
-        <UserInfo imgSrc={profimeImg} nameUser={name} score={3} />
+        <UserInfo imgSrc={profimeImg} nameUser={nameUser + lastNameUser}/>
         <TouchableOpacity
           className="sticky z-50 top-[-200px] right-[-346px]"
           onPress={() => setModalVisible(!modalVisible)}
@@ -37,20 +54,19 @@ const MyProfile = () => {
       <ScrollView>
         <View className="h-20 w-11/12 flex justify-center items-center border-t-2 border-y-gray-300 ">
           <Text className="text-sm ">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic expedita
-            aspernatur maxime natus sunt dicta dignissimos
+            Edita tu perfil para hacer tu descriptión
           </Text>
         </View>
         <View className="h-20 w-11/12 flex flex-row justify-start items-center border-t-2 border-y-gray-300 ">
           <Image className="mr-3" source={mail} />
-          <Text className="text-sm">juliantaboga@gmail.com</Text>
+          <Text className="text-sm">{emailUser}</Text>
         </View>
         <View className="h-20 w-11/12 flex flex-row justify-start items-center border-t-2 border-y-gray-300 ">
           <Image className="mr-3" source={dni} />
-          <Text className="text-base">DNI 123456789</Text>
+          <Text className="text-base">{typeDocUser + documentUser}</Text>
         </View>
         <View className="h-20 w-11/12 flex flex-row justify-start items-center border-y-2 border-y-gray-300 ">
-          <TouchableOpacity onPress={() => navigation.navigate("contact")}>
+          <TouchableOpacity >
             <View className="flex flex-row">
               <Image className="mr-3" source={chat} />
               <Text className="text-sm font-semibold">Contactar</Text>
@@ -71,7 +87,7 @@ const MyProfile = () => {
             <View>
               <TouchableOpacity
                 className="flex flex-row items-center h-[51px]"
-                onPress={() => setModalVisible(!modalVisible)}
+                onPress={() => editarPerfil()}
               >
                 <Image className="h-[22px] w-[24px]" source={edit} />
                 <Text className="text-base pl-2"> Editar perfil</Text>
